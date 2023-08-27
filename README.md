@@ -5,7 +5,7 @@
 [![Twitter: An1cu12](https://img.shields.io/twitter/follow/an1cu12.svg?style=social)](https://twitter.com/An1cu12)
 
 ## Setup
-- `yarn`
+- `yarn && yarn dapp`
 
 ## Environment File (.env)
 - RINKEBY_URL: Ethereum (Rinkeby) Testnet Provider endpoint
