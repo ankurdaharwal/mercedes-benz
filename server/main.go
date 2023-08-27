@@ -23,10 +23,6 @@ type nric struct {
 var nrics = []nric{}
 var dbConnStr string
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
-}
-
 func main() {
 
 	err := godotenv.Load()
