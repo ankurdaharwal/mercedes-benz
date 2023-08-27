@@ -1,0 +1,4 @@
+const CONTRACT_ADDRESS = "0xd132De447bF391cE1942Be9d8d2573F32dA6861D";
+const MAX_MINT_COUNT = 5;
+const API_URL = "https://localhost:8080/nrics";
+export { CONTRACT_ADDRESS, MAX_MINT_COUNT, API_URL };

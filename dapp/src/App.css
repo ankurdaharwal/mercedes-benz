@@ -1,0 +1,233 @@
+.App {
+  height: 100%;
+  background-color: #ffffff;
+  background-image: linear-gradient(to top, #0d122c, rgb(0, 0, 0));
+  background-size: cover;
+  background-position: center;
+  overflow: scroll;
+  text-align: center;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  cursor: pointer;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
+  font-size: 5rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+
+.logo {
+  height: 4rem;
+  width: 4rem;
+  margin-right: 1.5rem;
+}
+
+.line {
+  align-items: center;
+  width: 95%;
+}
+
+.sound-box {
+  position: fixed;
+  margin-top: 1rem;
+}
+
+.sound-toggle {
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+  animation: shm 0.2s infinite alternate;
+}
+
+.sound-toggle-no-animation {
+  margin-left: 1.5rem;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.sound-toggle-no-animation:hover {
+  text-shadow: 0px 0px 30px rgb(255, 255, 255);
+}
+
+.sub-text {
+  letter-spacing: 6px;
+  font-size: 1rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: white;
+}
+
+.content-container {
+  background-color: #464646;
+}
+
+.cta-button {
+  height: 50px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+  color: white;
+}
+
+.connect-wallet-container {
+  display: flex;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 2rem;
+  align-items: center;
+  animation: header 0.7s infinite alternate;
+}
+
+.connect-wallet-container img {
+  padding-bottom: 20px;
+}
+
+.connect-wallet-button {
+  margin-top: 6rem;
+  align-items: center;
+  box-shadow: 0px 10px 20px #1c1c1c;
+  transition: transform 0.2s;
+  color: black;
+  background-image: linear-gradient(
+    to right,
+    #c6e0ff,
+    #6cb6ff
+  );
+  background-size: 200% 200%;
+  animation: gradient-animation 3s ease infinite;
+}
+
+.connect-wallet-button:hover {
+  transform: scale(1.3);
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    #249afb,
+    #12224b
+  );
+  
+}
+
+.error {
+  color: rgb(255, 0, 0);
+  font-size: 24px;
+  margin-bottom: 2rem;
+  font-weight: bolder;
+}
+
+.opensea-button {
+  background-color: rgb(32, 129, 226);
+}
+
+.footer-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 12, 9);
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  padding: 0.8em;
+}
+
+.footer-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.glow-text {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.8),
+    rgb(80, 80, 80),
+    rgb(160, 160, 160),
+    white,
+    rgb(160, 160, 160),
+    rgb(80, 80, 80),
+    rgba(0, 0, 0, 0.8)
+  );
+  background-size: 200%;
+  animation: animate 0.8s infinite alternate;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(228, 203, 203, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+/* KeyFrames */
+@-webkit-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shm {
+  from {
+    margin-left: 30px;
+    animation-timing-function: cubic-bezier(0.25, 0.01, 0.55, 0.16);
+  }
+  to {
+    margin-left: 34px;
+  }
+}
+
+@keyframes header {
+  from {
+    margin-top: 0px;
+    animation-timing-function: cubic-bezier(0.25, 0.01, 0.55, 0.16);
+  }
+  to {
+    margin-top: 10px;
+  }
+}
