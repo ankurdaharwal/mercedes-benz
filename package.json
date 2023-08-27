@@ -4,7 +4,8 @@
   "description": "Mercedes Benz NFTs",
   "main": "index.js",
   "scripts": {
-    "install": "yarn && cd dapp && yarn",
+    "install": "yarn && yarn install:dapp",
+    "install:dapp": "cd dapp && yarn",
     "rinkeby": "npx hardhat run scripts/run.ts --network rinkeby",
     "matic": "npx hardhat run scripts/run.ts --network matictest",
     "dev": "npx hardhat run scripts/run.ts",

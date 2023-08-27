@@ -33,8 +33,6 @@ Example:[https://mumbai.polygonscan.com/address/0x3ab11bd7A358A73198CDaaB0610E35
 ## Start the Dapp
 - `yarn start`
 
-- Start by minting your Passport NFT
-
 ## Features
 - 📦 [Hardhat](https://hardhat.org/) - Ethereum development environment for professionals
 - 🦾 [TypeChain Hardhat plugin](https://github.com/ethereum-ts/TypeChain/tree/master/packages/hardhat) - Automatically generate TypeScript bindings for smartcontracts while using Hardhat.

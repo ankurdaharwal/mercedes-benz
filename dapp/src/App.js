@@ -183,9 +183,7 @@ const App = () => {
           </span>
           <span className="sound-toggle-no-animation">
             <a
-              href={
-                "https://testnets.opensea.io/collection/passport-0rnuwza4jr"
-              }
+              href={"https://testnets.opensea.io/collection/mercedesbenz-10"}
               target="_blank"
               rel="noreferrer"
             >
