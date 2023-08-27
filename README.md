@@ -13,17 +13,22 @@
 - PRIVATE_KEY: Private key for the deployer account
 
 ## Compile & migrate (Deploy) Contracts
-- `yarn deploy` (Default network: Rinkeby Ethereum Testnet)
+- `yarn matic` (Deploy the Smart Contracts to Polyon Mumbai Testnet)
+- After deployment set the newly deployed smart contract address on `dapp/src/constants.js` CONTRACT_ADDRESS field
+- Copy the artifacts JSON file from `artifacts/contracts/MercedesBenz.sol/MercedesBenz.json` to `dapp/src/utils/MercedesBenz.json`
 
 ## Watch the collection on OpenSea.io or Rarible.com
 Example: 
-- [https://testnets.opensea.io/collection/passport-0rnuwza4jr](https://testnets.opensea.io/collection/passport-0rnuwza4jr)
+- [https://testnets.opensea.io/collection/mercedesbenz-9](https://testnets.opensea.io/collection/mercedesbenz-9)
 
-## View the contract on the public explorer
-Example:[https://mumbai.polygonscan.com/address/0x42e1ba1b3244438d3920f45a47ceb8065e326391](https://mumbai.polygonscan.com/address/0x42e1ba1b3244438d3920f45a47ceb8065e326391)
+## View the example contract on the public explorer
+Example:[https://mumbai.polygonscan.com/address/0x3ab11bd7A358A73198CDaaB0610E357aEBDa7E47](https://mumbai.polygonscan.com/address/0x3ab11bd7A358A73198CDaaB0610E357aEBDa7E47)
 
 ## Production Build
 - `yarn build`
+
+## Start the API Server
+- `yarn api`
 
 ## Start the Dapp
 - `yarn start`
