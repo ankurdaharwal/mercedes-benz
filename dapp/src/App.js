@@ -3,22 +3,16 @@ import React, { useEffect, useState } from "react";
 import Sound from "react-sound";
 import BGMusic from "./assets/bg_music.mp3";
 
-import { ethers } from "ethers";
 import "./App.css";
 
 // Components
 import MintMercedesBenz from "./Components/MintMercedesBenz";
 import LoadingIndicator from "./Components/LoadingIndicator";
 
-import MercedesBenzNFTs from "./utils/MercedesBenz.json";
-
-// Constants
-import { CONTRACT_ADDRESS } from "./constants";
-
 const App = () => {
   // State
   const [currentAccount, setCurrentAccount] = useState(null);
-  const [carNFT, setCarNFT] = useState(null);
+  const [isValidChainId, setIsValidChainId] = useState(null);
   const [metaMaskMsg, setMetaMaskMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,8 +53,8 @@ const App = () => {
 
       function handleChainChanged(_chainId) {
         if (_chainId !== "0x13881") {
-          alert("Please select Polygon (Mumbai Testnet) Network on MetaMask!");
-        }
+          setIsValidChainId(false);
+        } else setIsValidChainId(true);
       }
     } catch (error) {
       console.log(error);
@@ -123,8 +117,22 @@ const App = () => {
       /*
        * Scenario #2 - account found and no NFT found
        */
-    } else if (currentAccount && !carNFT) {
-      return <MintMercedesBenz setCarNFT={setCarNFT} />;
+    } else if (!isValidChainId) {
+      return (
+        <div className="error">
+          Click{" "}
+          <a
+            href="https://chainlist.org/?testnets=true&search=mumbai"
+            target="_blank"
+            rel="noreferrer"
+          >
+            here
+          </a>{" "}
+          to add Polygon (Mumbai) to MetaMask and manually switch on Metamask
+        </div>
+      );
+    } else if (currentAccount && isValidChainId) {
+      return <MintMercedesBenz />;
     }
   };
 
@@ -138,34 +146,10 @@ const App = () => {
    */
   useEffect(() => {
     /*
-     * The function we will call that interacts with out smart contract
-     */
-    const fetchNFTMetadata = async () => {
-      console.log("Checking for Mercedes Benz NFT on address:", currentAccount);
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const mercedesBenzContract = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        MercedesBenzNFTs.abi,
-        signer
-      );
-      const userNFTtokenId = await mercedesBenzContract.checkIfUserHasNFT();
-      if (userNFTtokenId.toNumber() > 0) {
-        console.log(userNFTtokenId);
-        console.log("User has mercedes benz NFT");
-        setIsLoading(false);
-      } else {
-        console.log("No mercedes benz NFT found!");
-      }
-    };
-
-    /*
      * We only want to run this, if we have a connected wallet
      */
     if (currentAccount) {
       console.log("CurrentAccount:", currentAccount);
-      fetchNFTMetadata();
       setIsLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

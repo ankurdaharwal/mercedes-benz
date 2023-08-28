@@ -230,7 +230,7 @@ const MintMercedesBenz = () => {
       </div>
       {!userNFT && (
         <div className="mint-status-label">
-          Mint Status: {mintStatus}{" "}
+          Mint Status:
           <span className="mint-status">
             {" "}
             {mintStatus && mintCount < MAX_MINT_COUNT
@@ -246,7 +246,7 @@ const MintMercedesBenz = () => {
           />
         </div>
       )}
-      {userNFT && (
+      {userNFT > 0 && (
         <div className="user-nft">
           <p className="user-nft-text">
             You own this limited edition Mercedes Benz NFT!
