@@ -9,7 +9,6 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -25,10 +24,10 @@ var dbConnStr string
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Printf("Some error in loading environment: %s\n", err)
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	fmt.Printf("Some error in loading environment: %s\n", err)
+	// }
 
 	dbConnStr = os.Getenv("DB_HOST")
 	fmt.Printf("DB Connection String: %s\n", dbConnStr)
