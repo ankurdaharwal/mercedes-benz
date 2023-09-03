@@ -1,4 +1,4 @@
-module mercedes-benz/mercedes-api
+module mercedes-benz/api
 
 go 1.21.0
 
