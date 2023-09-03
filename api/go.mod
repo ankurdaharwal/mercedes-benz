@@ -1,6 +1,6 @@
 module mercedes-benz/api
 
-go 1.20.2
+go 1.20
 
 require github.com/gin-gonic/gin v1.9.1
 
