@@ -114,8 +114,8 @@ func getNrics(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:8080": true,
-		"https://127.0.0.1:8080": true,
+		"https://localhost:3000":                   true,
+		"https://mercedes-benz-an1cu12.vercel.app": true,
 	}
 
 	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
@@ -166,8 +166,8 @@ func getNricByAddress(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:8080": true,
-		"https://127.0.0.1:8080": true,
+		"https://localhost:3000":                   true,
+		"https://mercedes-benz-an1cu12.vercel.app": true,
 	}
 
 	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
