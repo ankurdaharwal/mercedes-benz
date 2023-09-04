@@ -59,7 +59,7 @@ const MintMercedesBenz = () => {
         console.log(data);
         setNricDbData(data.nrics);
       })
-      .catch((err) => {☁️
+      .catch((err) => {
         console.log(err.message);
       });
   }, []);
