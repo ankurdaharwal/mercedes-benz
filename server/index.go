@@ -48,7 +48,7 @@ func main() {
 	// - Preflight requests cached for 12 hours
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://localhost:3000", "https://mercedes-benz-an1cu12.vercel.app"},
+		AllowOrigins:     []string{"http://localhost:3000", "https://mercedes-benz-an1cu12.vercel.app"},
 		AllowMethods:     []string{"POST", "GET", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "x-requested-with"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -57,7 +57,7 @@ func main() {
 	}))
 
 	router.GET("/nrics", getNrics)
-	router.GET("/nrics/:address", getNricByAddress)
+	router.GET("/nrics/:nric", getAddressByNric)
 	router.POST("/nrics", postNrics)
 
 	router.Run(port)
@@ -116,7 +116,7 @@ func getNrics(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:3000":                   true,
+		"http://localhost:3000":                    true,
 		"https://mercedes-benz-an1cu12.vercel.app": true,
 	}
 
@@ -142,24 +142,21 @@ func getNrics(c *gin.Context) {
 			panic(err)
 		}
 		fmt.Printf("id: %v, nric: %v, address: %v\n", id, nric, address)
-		nricData[address] = nric
+		nricData[nric] = address
 	}
 	err = rows.Err()
 	if err != nil {
 		panic(err)
 	}
-	c.IndentedJSON(http.StatusOK, gin.H{
-		"nrics": nricData,
-	})
+	c.IndentedJSON(http.StatusOK, nricData)
 }
 
 // getNricByAddress locates the nric for a wallet address
 // parameter sent by the client, then returns that nric as a response.
-func getNricByAddress(c *gin.Context) {
-	addressParam := c.Param("address")
+func getAddressByNric(c *gin.Context) {
+	nricParam := c.Param("nric")
 
 	var (
-		id      int
 		nric    string
 		address string
 	)
@@ -168,7 +165,7 @@ func getNricByAddress(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:3000":                   true,
+		"http://localhost:3000":                    true,
 		"https://mercedes-benz-an1cu12.vercel.app": true,
 	}
 
@@ -179,28 +176,26 @@ func getNricByAddress(c *gin.Context) {
 	var nricData = make(map[string]string)
 
 	// Add the new nric to the db
-	sqlStatement := `SELECT id, nric, address from nric WHERE address = $1`
+	sqlStatement := `SELECT nric, address from nric WHERE nric = $1`
 	fmt.Printf("sqlStatement: %v\n", sqlStatement)
-	rows, err := db.Query(sqlStatement, addressParam)
+	rows, err := db.Query(sqlStatement, nricParam)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		panic(err)
 	}
 	defer rows.Close()
 	for rows.Next() {
-		err := rows.Scan(&id, &nric, &address)
+		err := rows.Scan(&nric, &address)
 		if err != nil {
 			fmt.Printf("Error: %v\n", err)
 			panic(err)
 		}
-		fmt.Printf("id: %v, nric: %v, address: %v\n", id, nric, address)
-		nricData[address] = nric
+		fmt.Printf("nric: %v, address: %v\n", nric, address)
+		nricData[nric] = address
 	}
 	err = rows.Err()
 	if err != nil {
 		panic(err)
 	}
-	c.IndentedJSON(http.StatusOK, gin.H{
-		"nric": nricData,
-	})
+	c.IndentedJSON(http.StatusOK, nricData)
 }
