@@ -58,7 +58,7 @@ const MintMercedesBenz = () => {
   }, []);
 
   useEffect(() => {
-    fetch(API_URL + "/nrics")
+    fetch(API_URL, OPTIONS)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
