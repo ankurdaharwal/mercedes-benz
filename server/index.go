@@ -46,9 +46,9 @@ func main() {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://localhost:3000"},
-		AllowMethods:     []string{"PUT", "PATCH"},
-		AllowHeaders:     []string{"Origin"},
+		AllowOrigins:     []string{"https://localhost:3000", "server-hru5o2gada-as.a.run.app"},
+		AllowMethods:     []string{"POST", "GET"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "x-requested-with"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
