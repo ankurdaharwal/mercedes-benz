@@ -95,15 +95,6 @@ func getNrics(c *gin.Context) {
 	db := connectDb(dbConnStr)
 	defer db.Close()
 
-	// Allow CORS
-	allowList := map[string]bool{
-		"https://localhost:3000": true,
-	}
-
-	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
-		c.Header("Access-Control-Allow-Origin", origin)
-	}
-
 	var nricData = make(map[string]string)
 
 	// Add the new nric to the db
@@ -145,15 +136,6 @@ func getNricByAddress(c *gin.Context) {
 	)
 	db := connectDb(dbConnStr)
 	defer db.Close()
-
-	// Allow CORS
-	allowList := map[string]bool{
-		"https://localhost:3000": true,
-	}
-
-	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
-		c.Header("Access-Control-Allow-Origin", origin)
-	}
 
 	var nricData = make(map[string]string)
 
