@@ -22,6 +22,7 @@ type nric struct {
 
 var nrics = []nric{}
 var dbConnStr string
+var port string
 
 func main() {
 
@@ -32,6 +33,9 @@ func main() {
 
 	dbConnStr = os.Getenv("DB_HOST")
 	fmt.Printf("DB Connection String: %s\n", dbConnStr)
+
+	port = ":" + os.Getenv("PORT")
+	fmt.Printf("PORT %s\n", port)
 
 	// CORS for https://localhost:8080 origin, allowing:
 	// - PUT and PATCH methods
@@ -54,7 +58,7 @@ func main() {
 	router.GET("/nrics/:address", getNricByAddress)
 	router.POST("/nrics", postNrics)
 
-	router.Run("localhost:8080")
+	router.Run(port)
 }
 
 func connectDb(connStr string) *sql.DB {

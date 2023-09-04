@@ -1,0 +1,73 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: server
+  namespace: "457373629951"
+  selfLink: /apis/serving.knative.dev/v1/namespaces/457373629951/services/server
+  uid: 182bbb8d-6322-4858-aece-96eeaf1663f9
+  resourceVersion: AAYEinLhcM4
+  generation: 4
+  creationTimestamp: "2023-09-04T12:18:25.039093Z"
+  labels:
+    cloud.googleapis.com/location: asia-southeast1
+  annotations:
+    run.googleapis.com/client-name: gcloud
+    serving.knative.dev/creator: ankur.daharwal@gmail.com
+    serving.knative.dev/lastModifier: ankur.daharwal@gmail.com
+    run.googleapis.com/client-version: 444.0.0
+    run.googleapis.com/operation-id: fb4fe835-8f69-472e-8e5f-9c7efcf3bc86
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+spec:
+  template:
+    metadata:
+      name: server-00004-var
+      labels:
+        run.googleapis.com/startupProbeType: Default
+      annotations:
+        run.googleapis.com/client-name: gcloud
+        run.googleapis.com/client-version: 444.0.0
+        autoscaling.knative.dev/maxScale: "100"
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 457373629951-compute@developer.gserviceaccount.com
+      containers:
+        - image: asia-southeast1-docker.pkg.dev/mercedes-benz-apis/cloud-run-source-deploy/server@sha256:da04df6cd41c4c22946765f555f039ce1132f0c16c02eede40c88b873b9c08dd
+          ports:
+            - name: http1
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+          startupProbe:
+            timeoutSeconds: 240
+            periodSeconds: 240
+            failureThreshold: 1
+            tcpSocket:
+              port: 8080
+  traffic:
+    - percent: 100
+      latestRevision: true
+status:
+  observedGeneration: 4
+  conditions:
+    - type: Ready
+      status: "True"
+      lastTransitionTime: "2023-09-04T15:48:59.517966Z"
+    - type: ConfigurationsReady
+      status: "True"
+      lastTransitionTime: "2023-09-04T15:48:45.675239Z"
+    - type: RoutesReady
+      status: "True"
+      lastTransitionTime: "2023-09-04T15:48:59.638990Z"
+  latestReadyRevisionName: server-00004-var
+  latestCreatedRevisionName: server-00004-var
+  traffic:
+    - revisionName: server-00004-var
+      percent: 100
+      latestRevision: true
+  url: https://server-hru5o2gada-as.a.run.app
+  address:
+    url: https://server-hru5o2gada-as.a.run.app

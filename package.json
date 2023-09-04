@@ -11,7 +11,8 @@
     "build": "cd dapp && yarn build",
     "start": "cd dapp && yarn start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "cd server && go run ."
+    "api": "cd server && go run .",
+    "deploy": "gcloud run deploy"
   },
   "keywords": [],
   "author": "Ankur Daharwal (@ankurdaharwal)",

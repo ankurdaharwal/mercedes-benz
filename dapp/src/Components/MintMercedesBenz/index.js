@@ -53,13 +53,13 @@ const MintMercedesBenz = () => {
   }, []);
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_URL + "/nrics")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setNricDbData(data.nrics);
       })
-      .catch((err) => {
+      .catch((err) => {☁️
         console.log(err.message);
       });
   }, []);
