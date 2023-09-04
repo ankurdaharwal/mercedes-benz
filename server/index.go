@@ -1,4 +1,4 @@
-package handler
+package main
 
 import (
 	"database/sql"
@@ -23,7 +23,7 @@ type nric struct {
 var nrics = []nric{}
 var dbConnStr string
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func main() {
 
 	err := godotenv.Load()
 	if err != nil {
