@@ -9,7 +9,12 @@ import LoadingIndicator from "../LoadingIndicator";
 
 import MintSound from "../../assets/select_click.wav";
 
-import { CONTRACT_ADDRESS, MAX_MINT_COUNT, API_URL } from "../../constants";
+import {
+  CONTRACT_ADDRESS,
+  MAX_MINT_COUNT,
+  API_URL,
+  OPTIONS,
+} from "../../constants";
 import MercedesBenzNFTs from "../../utils/MercedesBenz.json";
 
 const MintMercedesBenz = () => {
@@ -53,7 +58,7 @@ const MintMercedesBenz = () => {
   }, []);
 
   useEffect(() => {
-    fetch(API_URL + "/nrics")
+    fetch(API_URL + "/nrics", OPTIONS)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
