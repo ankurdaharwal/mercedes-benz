@@ -52,12 +52,12 @@ const MintMercedesBenz = () => {
     }
   }, []);
 
+  // Fetch NRIC DB Data
   useEffect(() => {
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setNricDbData(data.nrics);
+        setNricDbData(data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -105,11 +105,35 @@ const MintMercedesBenz = () => {
         setMintCount(count.toNumber());
       }
     };
+
+    if (nricDbData) {
+      console.log("NRIC DB Data: ", nricDbData);
+      console.log("NRIC Data Size: ", Object.keys(nricDbData).length);
+    }
+
     if (mercedesBenzContract) {
-      console.log(nricDbData);
       isMintingLive();
     }
-  }, [mercedesBenzContract, mintStatus, userNFT]);
+  }, [mercedesBenzContract, mintStatus, userNFT, nricDbData]);
+
+  const PostNRICData = (data) => {
+    useEffect(() => {
+      fetch(API_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: Object.keys(nricDbData).length + 1,
+          nric: data,
+          address: minterAddress,
+        }),
+      }).then((response) => response.json());
+    }, []);
+
+    return;
+  };
 
   useEffect(() => {
     /*
@@ -163,16 +187,21 @@ const MintMercedesBenz = () => {
     console.log("Submitting NRIC: ", data.nric);
     console.log("Minter Address: ", minterAddress);
     try {
+      if (nricDbData[data.nric]) {
+        alert("NRIC already exists!");
+        return;
+      }
       if (mercedesBenzContract) {
         setMintingNFT(true);
         console.log("Minting mercedes-benz NFT in progress...");
         const mintTxn = await mercedesBenzContract.mint();
         await mintTxn.wait();
         console.log("mintTxn:", mintTxn);
+        PostNRICData(data.nric);
         setMintingNFT(false);
       }
     } catch (error) {
-      console.warn("MintCarAction Error:", error);
+      console.warn("MintAction Error:", error);
       setMintingNFT(false);
     }
   };
