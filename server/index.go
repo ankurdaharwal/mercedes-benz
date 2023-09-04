@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"time"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -37,23 +35,8 @@ func main() {
 	port = ":" + os.Getenv("PORT")
 	fmt.Printf("PORT %s\n", port)
 
-	// CORS for https://localhost:3000 origin, allowing:
-	// - PUT and PATCH methods
-	// - Origin header
-	// - Credentials share
-	// - Preflight requests cached for 12 hours
-
+	// setup router
 	router := gin.Default()
-
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://localhost:3000", "https://mercedes-benz-an1cu12.vercel.app"},
-		AllowMethods:     []string{"POST", "GET", "PUT", "DELETE"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "x-requested-with"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-		MaxAge:           12 * time.Hour,
-	}))
-
 	router.GET("/nrics", getNrics)
 	router.GET("/nrics/:address", getNricByAddress)
 	router.POST("/nrics", postNrics)
@@ -114,8 +97,7 @@ func getNrics(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:3000":                   true,
-		"https://mercedes-benz-an1cu12.vercel.app": true,
+		"https://localhost:3000": true,
 	}
 
 	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
@@ -166,8 +148,7 @@ func getNricByAddress(c *gin.Context) {
 
 	// Allow CORS
 	allowList := map[string]bool{
-		"https://localhost:3000":                   true,
-		"https://mercedes-benz-an1cu12.vercel.app": true,
+		"https://localhost:3000": true,
 	}
 
 	if origin := c.Request.Header.Get("Origin"); allowList[origin] {
