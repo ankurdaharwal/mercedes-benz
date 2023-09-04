@@ -46,7 +46,7 @@ func main() {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://localhost:3000", "https://server-hru5o2gada-as.a.run.app"},
+		AllowOrigins:     []string{"https://localhost:3000", "https://mercedes-benz-an1cu12.vercel.app"},
 		AllowMethods:     []string{"POST", "GET", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "x-requested-with"},
 		ExposeHeaders:    []string{"Content-Length"},
